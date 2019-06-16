@@ -1,0 +1,577 @@
+---
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+# Exercises Chapter 2:
+
+# 2.4 Exercises
+## Conceptual
+### 1. For each of parts (a) through (d), indicate whether we would generally expect the performance of a flexible statistical learning method to be better or worse than an inflexible method. Justify your answer.
+
+* (a) The sample size n is extremely large, and the number of predictors p is small.
+      + Answer: We would expect the performance of a flexible statistical learning method to be better than an inflexible one because with a large n you can approach the true distribution.
+* (b) The number of predictors p is extremely large, and the number of observations n is small.
+      + Answer: The performance of a flexible statistical learning method would be worse as the probability of overfitting would be very high. 	
+* (c) The relationship between the predictors and response is highly non-linear.
+      + Answer: Flexible statistical learning methods are more adapted to non-linear relationships than inflexible methods. The flexible method has better options to approximate the real distribution.
+* (d) The variance of the error terms, i.e. $\sigma$^2^ = Var(), is extremely high.
+      + Answer: The performance of a flexible statistical method would be worse when the variance of the error term is very high. Overfitting would be a large worry, i.e. that the model is following the errors in the data, so then the flexible approach would likely have lower performance.
+
+
+
+
+### 2. Explain whether each scenario is a classification or regression problem, and indicate whether we are most interested in inference or prediction. Finally, provide n and p.
+* (a) We collect a set of data on the top 500 firms in the US. For each firm we record profit, number of employees, industry and the CEO salary. We are interested in understanding which factors affect CEO salary
+      + Answer: regression, inference, n = 500, p = record profit, # of employees, industry, CEO salary
+* (b) We are considering launching a new product and wish to know whether it will be a success or a failure. We collect data on 20 similar products that were previously launched. For each product we have recorded whether it was a success or failure, price charged for the product, marketing budget, competition price, and ten other variables.
+      + Answer: classification, prediction, n = 20, p = success or failure, $, marketing, budget competition price, +10 others
+* (c) We are interest in predicting the % change in the USD/Euro exchange rate in relation to the weekly changes in the world stock markets. Hence we collect weekly data for all of 2012. For each week we record the % change in the USD/Euro, the % change in the US market, the % change in the British market, and the % change in the German market.
+      + Answer: regression, prediction, n = 52, p = 4
+      
+      
+### 3. We now revisit the bias-variance decomposition.
+* (a) Provide a sketch of typical (squared) bias, variance, training error, test error, and Bayes (or irreducible) error curves, on a single plot, as we go from less flexible statistical learning methods towards more flexible approaches. The x-axis should represent the amount of flexibility in the method, and the y-axis should represent the values for each curve. There should be five curves. Make sure to label each one.
+      + Answer: 
+      ![Quickly drafted plot](./ch2_q3_bias_variance.png)
+      
+* (b) Explain why each of the five curves has the shape displayed in part (a).
+      + Answer:
+          - bias - decreases with flexibility because more likely to appropriately fit the data
+          - variance - increases with flexibility because more wobbly, follows the data more
+          - training error - decreases with flexibility - possible to better follow the data with more flexible more
+          - test error - decreases and then increases with flexibility, error increases because model is following noise of data in training set and test data do not have the same noise.
+          - V(E) irreducible error - stays constant with the method because it is an error inherent in the data.
+      
+
+### 4. You will now think of some real-life applications for statistical learning.
+* (a) Describe three real-life applications in which classification might be useful. Describe the response, as well as the predictors. Is the goal of each application inference or prediction? Explain your answer.
+      + Answer: 
+         + variants, are they true positives or false positives in NGS data, predictor: variant fraction, cell type, coverage, genomic context, goal: prediction
+         + microbial OTUs, - what is the richness of OTUs found by environment. predictors: environmental parameters, goal: prediction, but also inference
+         + new books, fan-favourites or not based on Goodreads rating, predictors: use parameters of page length, category, author goal: prediction. 
+* (b) Describe three real-life applications in which regression might be useful. Describe the response, as well as the predictors. Is the goal of each application inference or prediction? Explain your answer.
+      + Answer:
+          + crime with temperature, goal: prediction and inference
+          + price of coffee over time in Switzerland goal:prediction
+          + price of used cars by location goal:prediction
+* (c) Describe three real-life applications in which cluster analysis might be useful.
+      + Answer:
+          + micro-array or gene expression data - samples with similar patterns
+          + microbial communities - samples with similar functional pathways
+          + people with similar behaviours in financial transaction data
+
+### 5. What are the advantages and disadvantages of a very flexible (versus a less flexible) approach for regression or classification? Under what circumstances might a more flexible approach be preferred to a less flexible approach? When might a less flexible approach be preferred?
+ + Answer:
+     + Regression 
+         + flexible - harder to interpret function , test scores (MSE) may be lower, may more accurately model the true function
+         + less flexible - opposite of flexible
+         + Why take a more or less flexible option? chose more flexible when lots of data and many different groups and chose less flexible when few data points.
+     + Classification
+         + the same method can be more or less flexible (e.g. k-nearest neighbours)
+         + highly flexible - training MSE low, but test MSE high. High variance in the classification
+         + less flexible - lower variance but higher bias
+        + Why take a more or less flexible option? (same as regression) chose more flexible when lots of data and many different groups and chose less flexible when few data points.
+
+
+### 6. Describe the differences between a parametric and a non-parametric statistical learning approach. What are the advantages of a parametric approach to regression or classification (as opposed to a nonparametric approach)? What are its disadvantages?
++ Answer:
+    + Parametric methods make an assumption about the function of the model and that it is linear. Non-parametric methods do not assume anything about the function when trying to estimate the fit of the data. 
+    + Advantages of parametric: needs less data than a non-parametric test
+    + Disadvantages of parametric: May not model the true functions and thus may have errors 
+
+### 7. The table below provides a training data set containing six observations, three predictors, and one qualitative response variable
+
+Obs.| X1 |X2 |X3| Y
+---|----|----|----|----
+1| 0 |3| 0| Red
+2|2 |0| 0| Red
+3 |0| 1 |3| Red
+4| 0| 1| 2| Green
+5| -1| 0| 1 |Green
+6| 1| 1| 1 |Red
+
+
+Suppose we wish to use this data set to make a prediction for Y when X1 = X2 = X3 = 0 using K-nearest neighbours.
+
+* (a) Compute the Euclidean distance between each observation and the test point, X1 = X2 = X3 = 0.
+      + Answer: 
+      
+Euclidean distance is $\sqrt{x1^2 + x2^2 + x3^2}$      
+      
+
+```{r}
+training_df <- data.frame(observation=c(1,2,3,4,5,6),
+                          X1 = c(0,2,0,0,1,1),
+                          X2 = c(3,0,1,1,0,1),
+                          X3 = c(0,0,3,2,1,1),
+                          Y = c("Red", "Red", "Red", "Green", "Green", "Red"),
+                          Euclidean_distance = c(sqrt(3*3), sqrt(2*2),sqrt(1*1+3*3), sqrt(1*1+2*2),sqrt(1*1+1*1),sqrt(1*1+1*1+1*1)))
+training_df
+```
+      
+* (b) What is our prediction with K = 1? Why?
+      + Answer:
+```{r}
+library(ggplot2)
+ggplot(training_df, aes(x = Euclidean_distance, y = 0))+
+  geom_point(aes(colour = Y))+
+  scale_color_manual(values = c( "green", "red"))+
+  xlim(0,4)
+```
+     
+  Green.    
+      
+* (c) What is our prediction with K = 3? Why?
+      + Answer: Red, because most of the points included are red. 
+* (d) If the Bayes decision boundary in this problem is highly nonlinear, then would we expect the best value for K to be large or small? Why?
+      + Answer: We would expect the best value to be small if the Bayes decision boundary is highly non-linear. This is because a large value would not be flexible enough to model the nonlinear boundary.
+
+
+## Applied
+### 8. This exercise relates to the College data set, which can be found in the file College.csv. 
+It contains a number of variables for 777 different universities and colleges in the US. The variables are:
+
+* Private : Public/private indicator
+* Apps : Number of applications received
+* Accept : Number of applicants accepted
+* Enroll : Number of new students enrolled
+* Top10perc : New students from top 10 % of high school class
+* Top25perc : New students from top 25 % of high school class
+* F.Undergrad : Number of full-time undergraduates
+* P.Undergrad : Number of part-time undergraduates
+* Outstate : Out-of-state tuition
+* Room.Board : Room and board costs
+* Books : Estimated book costs
+* Personal : Estimated personal spending
+* PhD : Percent of faculty with Ph.D.’s
+* Terminal : Percent of faculty with terminal degree
+* S.F.Ratio : Student/faculty ratio
+* perc.alumni : Percent of alumni who donate
+* Expend : Instructional expenditure per student
+* Grad.Rate : Graduation rate
+
+Before reading the data into R, it can be viewed in Excel or a texteditor.
+
+* (a) Use the read.csv() function to read the data into R. Call the loaded data college. Make sure that you have the directory set to the correct location for the data.
+
+```{r}
+## downloaded data from http://www-bcf.usc.edu/~gareth/ISL/data.html
+college <- read.csv("./College.csv")
+```
+
+
+* (b) Look at the data using the fix() function. You should notice that the first column is just the name of each university. We don’t really want R to treat this as data. However, it may be handy to have these names for later. Try the following commands:
+
+```{r}
+rownames(college) <- college[,1]
+#fix(college) ## brings up an editor in RStudio, will switch to just printing the output
+head(college)
+```
+
+You should see that there is now a row.names column with the name of each university recorded. This means that R has given each row a name corresponding to the appropriate university. R will not try to perform calculations on the row names. However, we still need to eliminate the first column in the data where the names are stored. Try
+
+```{r}
+college <- college[,-1]
+head(college)
+```
+
+
+Now you should see that the first data column is Private. Note that another column labelled row.names now appears before the Private column. However, this is not a data column but rather the name that R is giving to each row. 
+
+(c) i. Use the summary() function to produce a numerical summary of the variables in the data set.
+
+```{r}
+summary(college)
+```
+
+ii. Use the pairs() function to produce a scatterplot matrix of the first ten columns or variables of the data. Recall that you can reference the first ten columns of a matrix A using A[,1:10].
+
+```{r}
+pairs(college[,1:10])
+```
+
+
+iii. Use the plot() function to produce side-by-side boxplots of Outstate versus Private.
+
+```{r}
+boxplot(college$Outstate ~ college$Private) ## neat I did not know the formula notation could be used here
+```
+
+
+I would be more apt to use ggplot2 to create plots
+```{r}
+ggplot(college, aes(x = Private, y = Outstate))+
+  geom_boxplot()
+```
+
+
+iv. Create a new qualitative variable, called Elite, by binning the Top10perc variable. We are going to divide universities into two groups based on whether or not the proportion of students coming from the top 10 % of their high school classes exceeds 50 %.
+
+```{r}
+Elite <- rep("No", nrow(college ))
+Elite[college$Top10perc > 50] <- "Yes"
+Elite <- as.factor(Elite)
+college <- data.frame(college, Elite)
+```
+
+
+
+Use the summary() function to see how many elite universities there are. Now use the plot() function to produce
+side-by-side boxplots of Outstate versus Elite.
+
+```{r}
+summary(college$Elite)
+
+boxplot(college$Outstate ~ college$Elite)
+```
+
+
+
+v. Use the hist() function to produce some histograms with differing numbers of bins for a few of the quantitative variables. You may find the command par(mfrow=c(2,2)) useful: it will divide the print window into four regions so that four plots can be made simultaneously. Modifying the arguments to this function will divide the screen in other ways.
+
+```{r}
+hist(college$Apps)
+hist(college$Accept)
+```
+
+I feel there must be a more efficient way
+```{r, warnings = FALSE, message=FALSE}
+library(dplyr)
+library(tidyr)
+college_gathered <- college %>%
+  ## remove the variables that are factors
+  select(-Private, -Elite) %>% 
+  gather()
+
+ggplot(college_gathered, aes(x = value))+
+  geom_histogram(stat = "bin")+
+  facet_wrap(.~key, scales = "free")+
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+
+vi. Continue exploring the data, and provide a brief summary of what you discover
+
+How do the histograms differ between private or elite schools?
+
+```{r}
+college_gathered <- college %>%
+  ## remove the variables that are factors
+  select(-Elite) %>% 
+  gather("key", "value", -Private)
+
+ggplot(college_gathered, aes(x = value, colour = Private))+
+  geom_density()+
+  facet_wrap(.~key, scales = "free")+
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+
+Differences between private and public schools are seen in the number of applications, enrolment and acceptance. This is likely just  related to the number of student total which we would expect to be higher in the public schools.
+
+```{r}
+college_gathered <- college %>%
+  ## remove the variables that are factors
+  select(-Private) %>% 
+  gather("key", "value", -Elite)
+
+ggplot(college_gathered, aes(x = value, colour = Elite))+
+  geom_density()+
+  facet_wrap(.~key, scales = "free")+
+  theme(axis.text.x = element_text(angle = 90))
+
+```
+
+
+
+Elite vs non-Elite schools show a big difference, whereby Elite schools have higher numbers of PhDs teaching, contributions of alums after graduation, graduation rates, and  expenditures.
+
+
+
+### 9. This exercise involves the Auto data set studied in the lab. 
+Make sure that the missing values have been removed from the data.
+
+```{r}
+auto <- read.table("./Auto.data", header = TRUE, na.strings = "?")
+## where are the NAs?
+summary(auto)
+## remove the rows with NAs
+auto <- na.omit(auto)
+head(auto)
+```
+
+* (a) Which of the predictors are quantitative, and which are qualitative?
+
+Quantitative:
+```{r}
+quantitative <- c("mpg", "cylinders", "displacement", "horsepower", "weight", "acceleration", "year")
+```
+
+Qualitative:
+```{r}
+qualitative <- c("origin", "name")
+```
+
+* (b) What is the range of each quantitative predictor? You can answer this using the range() function. range()
+
+```{r}
+quant_data <- subset(auto, select = colnames(auto) %in% quantitative)
+
+## take the range for each column
+apply(quant_data, 2, range)
+```
+
+* (c) What is the mean and standard deviation of each quantitative predictor?
+
+```{r}
+apply(quant_data, 2, mean)
+apply(quant_data, 2, sd)
+```
+
+
+* (d) Now remove the 10th through 85th observations. What is the range, mean, and standard deviation of each predictor in the subset of the data that remains?
+```{r}
+quant_data_trimmed <- quant_data[-c(10:85),]
+apply(quant_data_trimmed, 2, range)
+apply(quant_data_trimmed, 2, mean)
+apply(quant_data_trimmed, 2, sd)
+```
+
+* (e) Using the full data set, investigate the predictors graphically, using scatterplots or other tools of your choice. Create some plots highlighting the relationships among the predictors. Comment on your findings.
+```{r}
+pairs(auto)
+```
+
+Histograms of quantitative
+
+```{r}
+## remember gather() akin to melt()
+quant_data_gathered <- quant_data %>%
+  gather()
+## quick histograms
+ggplot(quant_data_gathered, aes(x = value))+
+  geom_histogram()+
+  facet_wrap(.~key, scales = "free")+
+  theme(axis.text.x = element_text(angle = 90))
+
+```
+
+3 and 5 cylinders? Is there really such a thing? 
+
+Apparently there are three cylinder car where the pistons are arranged in a straight line: https://en.wikipedia.org/wiki/Straight-three_engine  and similar for the five cylinder engines: https://en.wikipedia.org/wiki/Straight-five_engine. I thought that there must have been issues with the data, but now I've learned something about internal combustion engines. 
+
+
+Weight vs mpg
+```{r}
+ggplot(auto, aes(x = weight, y = mpg, colour = year))+
+  geom_point()
+```
+
+
+Year and Horsepower
+```{r}
+ggplot(auto, aes(x = as.factor(year), y = horsepower))+
+  geom_violin()+
+  geom_point()
+
+ggplot(auto, aes(x = as.factor(year), y = horsepower))+
+  geom_boxplot()+
+  geom_jitter()
+```
+
+
+(f) Suppose that we wish to predict gas mileage (mpg) on the basis of the other variables. Do your plots suggest that any of the other variables might be useful in predicting mpg? Justify your answer.
+
+
+Displacement, weight, horsepower and year. The first three are likely correlated to each other. I think that year also reflects what I assume to be an increase in the efficiency of the motors.
+
+
+```{r}
+cor(quant_data)
+```
+
+Displacement, weight, and horsepower are indeed strongly correlated to each other. 
+
+10. This exercise involves the Boston housing data set.
+
+* (a) To begin, load in the Boston data set. The Boston data set is part of the MASS library in R.
+
+```{r, warning = FALSE, message = FALSE}
+library(MASS)
+```
+
+
+Now the data set is contained in the object Boston.
+```{r}
+head(Boston)
+```
+
+
+Read about the data set:
+
+```{r}
+?Boston
+```
+
+How many rows are in this data set? How many columns?
+
+506 rows and 14 columns from the help, but also:
+```{r}
+dim(Boston)
+```
+
+What do the rows and columns represent?
+
+Colnames described in help:
+
+* crim: per capita crime rate by town.
+* zn: proportion of residential land zoned for lots over 25,000 sq.ft.
+* indus: proportion of non-retail business acres per town.
+* chas: Charles River dummy variable (= 1 if tract bounds river; 0 otherwise).
+* nox: nitrogen oxides concentration (parts per 10 million).
+* rm: average number of rooms per dwelling.
+* age: proportion of owner-occupied units built prior to 1940.
+* dis: weighted mean of distances to five Boston employment centres.
+* rad: index of accessibility to radial highways.
+* tax: full-value property-tax rate per \$10,000.
+* ptratio: pupil-teacher ratio by town.
+* black: 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town.
+* lstat: lower status of the population (percent).
+* medv: median value of owner-occupied homes in \$1000s.
+
+```{r}
+colnames(Boston)
+head(rownames(Boston))
+```
+
+Rows are different suburbs of Boston
+
+* (b) Make some pairwise scatterplots of the predictors (columns) in this data set. Describe your findings.
+
+```{r}
+pairs(Boston)
+```
+
+
+Looking at this pairs plot crime may have a relationship with rm, age, dis, black and medv, but it is hard to tell in these pairs plots. I will look a bit more closely in the following plot
+
+Number of rooms vs. crime
+```{r}
+ggplot(Boston, aes(x= rm, y = crim))+
+  geom_point()
+```
+
+There seems to not to be a very clear relationship between average number of rooms in a suburb and crime.
+
+Proportion of houses built before 1940 
+```{r}
+ggplot(Boston, aes(x= age, y = crim))+
+  geom_point()
+```
+
+Here we do see something, where there can be higher crime in suburbs with higher proportions of older houses.
+
+```{r}
+ggplot(Boston, aes(x= black, y = crim))+
+  geom_point()
+```
+
+No clear relationship between proportion of blacks and crime.
+
+Lower status of the population (percent) vs crime. 
+```{r}
+ggplot(Boston, aes(x= lstat, y = crim))+
+  geom_point()
+```
+
+
+We see a slight increase in the crime rate with larger proportions of the population having lower status. 
+
+
+Median value of owner-occupied homes in $1000s vs crime
+```{r}
+ggplot(Boston, aes(x= medv, y = crim))+
+  geom_point()
+```
+
+Here we have the clearest relationship
+
+* (c) Are any of the predictors associated with per capita crime rate? If so, explain the relationship.
+
+The median value of owner occupied homes seems to predict crime rate by town. The towns with lower median values have higher crime rates with the exception that towns with the most expensive houses also have a slightly elevated crime rate. 
+
+* (d) Do any of the suburbs of Boston appear to have particularly high crime rates? Tax rates? Pupil-teacher ratios? Comment on the range of each predictor.
+
+```{r}
+summary(Boston$crim)
+which.max(Boston$crim)
+summary(Boston$tax)
+which.max(Boston$tax)
+summary(Boston$ptratio)
+which.max(Boston$ptratio)
+```
+
+Yes the suburb 381 has a very high crime rate of 88.98 which is well above the median of 0.26. 
+```{r}
+boxplot(Boston$crim)
+```
+
+
+
+
+Suburb 489 has the highest tax rate 711, but this value is not an outlier.
+```{r}
+boxplot(Boston$tax)
+```
+
+
+Suburb 355has the highest pupil-teacher ratio at  22, but this value is not an outlier. Here we do see some outliers on the lower end of the range whereby there are suburbs with ratios below 14. 
+
+
+```{r}
+boxplot(Boston$ptratio)
+```
+
+
+* (e) How many of the suburbs in this data set bound the Charles river?
+
+```{r}
+sum(Boston$chas == 1)
+```
+
+
+* (f) What is the median pupil-teacher ratio among the towns in this data set?
+
+```{r}
+median(Boston$ptratio)
+```
+
+
+* (g) Which suburb of Boston has lowest median value of owner-occupied homes? What are the values of the other predictors for that suburb, and how do those values compare to the overall ranges for those predictors? Comment on your findings.
+
+
+```{r}
+which.min(Boston$medv)
+Boston[which.min(Boston$medv),]
+
+```
+Suburb 399 has the lowest median value of owner-occupied homes. It does not have the highest crime rate, but it is high. It is not on the Charles River and the houses are very old, 100% of the owner-occupied houses were built before 1940. 
+
+* (h) In this data set, how many of the suburbs average more than seven rooms per dwelling? More than eight rooms per dwelling? Comment on the suburbs that average more than eight rooms per dwelling. 
+  
+```{r}
+sum(Boston$rm > 7)
+sum(Boston$rm > 8)
+
+summary(Boston[Boston$rm > 8,])
+```
+ 
+The median crime rate is higher in the suburbs with 8 or more rooms on average than for the overall data set. I thought this might be because of the association with older houses and crime. There are generally only suburbs with older houses which have an average of more than 8 rooms per house. 
+ 
+```{r}
+ggplot(Boston, aes(x = age, y = rm))+
+  geom_point()
+```
+ 
