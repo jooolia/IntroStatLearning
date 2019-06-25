@@ -9,6 +9,6 @@ Display of rendered RMarkdown files available on https://jooolia.github.io/Intro
 
 
 ## Labs (taken from the book)
-[Chapter 3 Lab](https://jooolia.github.io/IntroStatLearning/Exercises/chapter_3/chapter_3_lab.html) 
+[Chapter 3 Lab](https://jooolia.github.io/IntroStatLearning/Labs/chapter_3/chapter_3_lab.html) 
  
 
